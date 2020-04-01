@@ -21,10 +21,11 @@ const createNavigation = () => {
     </div>
     <a href="#stats" class="main-navigation__additional">Stats</a>
   </nav>
+
   <ul class="sort">
-  <li><a href="#" class="sort__button sort__button--active">Sort by default</a></li>
-  <li><a href="#" class="sort__button">Sort by date</a></li>
-  <li><a href="#" class="sort__button">Sort by rating</a></li>
+    <li><a href="#" class="sort__button sort__button--active">Sort by default</a></li>
+    <li><a href="#" class="sort__button">Sort by date</a></li>
+    <li><a href="#" class="sort__button">Sort by rating</a></li>
   </ul>`
   );
 };
@@ -34,31 +35,33 @@ const createCardSection = () => {
     `<section class="films">
     <section class="films-list">
       <h2 class="films-list__title visually-hidden">All movies. Upcoming</h2>
+
+      <div class="films-list__container">
       </section>
       </section>
-      <div class="films-list__container"></div>`
+`
   );
 };
 
 const createFilmCard = () => {
   return (
-`<article class="film-card">
-          <h3 class="film-card__title">The Dance of Life</h3>
-          <p class="film-card__rating">8.3</p>
-          <p class="film-card__info">
-            <span class="film-card__year">1929</span>
-            <span class="film-card__duration">1h 55m</span>
-            <span class="film-card__genre">Musical</span>
-          </p>
-          <img src="./images/posters/the-dance-of-life.jpg" alt="" class="film-card__poster">
-          <p class="film-card__description">Burlesque comic Ralph "Skid" Johnson (Skelly), and specialty dancer Bonny Lee King (Carroll), end up together on a cold, rainy night at a tr…</p>
-          <a class="film-card__comments">5 comments</a>
-          <form class="film-card__controls">
-            <button class="film-card__controls-item button film-card__controls-item--add-to-watchlist">Add to watchlist</button>
-            <button class="film-card__controls-item button film-card__controls-item--mark-as-watched">Mark as watched</button>
-            <button class="film-card__controls-item button film-card__controls-item--favorite">Mark as favorite</button>
-          </form>
-        </article>`
+    `<article class="film-card">
+    <h3 class="film-card__title">The Dance of Life</h3>
+    <p class="film-card__rating">8.3</p>
+    <p class="film-card__info">
+      <span class="film-card__year">1929</span>
+      <span class="film-card__duration">1h 55m</span>
+      <span class="film-card__genre">Musical</span>
+    </p>
+    <img src="./images/posters/the-dance-of-life.jpg" alt="" class="film-card__poster">
+    <p class="film-card__description">Burlesque comic Ralph "Skid" Johnson (Skelly), and specialty dancer Bonny Lee King (Carroll), end up together on a cold, rainy night at a tr…</p>
+    <a class="film-card__comments">5 comments</a>
+    <form class="film-card__controls">
+      <button class="film-card__controls-item button film-card__controls-item--add-to-watchlist">Add to watchlist</button>
+      <button class="film-card__controls-item button film-card__controls-item--mark-as-watched">Mark as watched</button>
+      <button class="film-card__controls-item button film-card__controls-item--favorite">Mark as favorite</button>
+    </form>
+  </article>`
   );
 };
 
@@ -72,6 +75,7 @@ const createTopRated = () => {
   return (
     `<section class="films-list--extra">
       <h2 class="films-list__title">Top rated</h2>
+
       <div class="films-list__container">
         <article class="film-card">
           <h3 class="film-card__title">The Man with the Golden Arm</h3>
@@ -90,6 +94,7 @@ const createTopRated = () => {
             <button class="film-card__controls-item button film-card__controls-item--favorite">Mark as favorite</button>
           </form>
         </article>
+
         <article class="film-card">
           <h3 class="film-card__title">The Great Flamarion</h3>
           <p class="film-card__rating">8.9</p>
@@ -116,6 +121,7 @@ const createMostCommented = () => {
   return (
     `<section class="films-list--extra">
       <h2 class="films-list__title">Most commented</h2>
+
       <div class="films-list__container">
         <article class="film-card">
           <h3 class="film-card__title">Santa Claus Conquers the Martians</h3>
@@ -134,6 +140,7 @@ const createMostCommented = () => {
             <button class="film-card__controls-item button film-card__controls-item--favorite film-card__controls-item--active">Mark as favorite</button>
           </form>
         </article>
+
         <article class="film-card">
           <h3 class="film-card__title">Made for Each Other</h3>
           <p class="film-card__rating">5.8</p>
@@ -152,7 +159,8 @@ const createMostCommented = () => {
           </form>
         </article>
       </div>
-    </section>`
+    </section>
+  </section>`
   );
 };
 
@@ -167,22 +175,18 @@ const createFilmDetails = () => {
       <div class="film-details__info-wrap">
         <div class="film-details__poster">
           <img class="film-details__poster-img" src="./images/posters/the-great-flamarion.jpg" alt="">
-
           <p class="film-details__age">18+</p>
         </div>
-
         <div class="film-details__info">
           <div class="film-details__info-head">
             <div class="film-details__title-wrap">
               <h3 class="film-details__title">The Great Flamarion</h3>
               <p class="film-details__title-original">Original: The Great Flamarion</p>
             </div>
-
             <div class="film-details__rating">
               <p class="film-details__total-rating">8.9</p>
             </div>
           </div>
-
           <table class="film-details__table">
             <tr class="film-details__row">
               <td class="film-details__term">Director</td>
@@ -221,14 +225,11 @@ const createFilmDetails = () => {
           </p>
         </div>
       </div>
-
       <section class="film-details__controls">
         <input type="checkbox" class="film-details__control-input visually-hidden" id="watchlist" name="watchlist">
         <label for="watchlist" class="film-details__control-label film-details__control-label--watchlist">Add to watchlist</label>
-
         <input type="checkbox" class="film-details__control-input visually-hidden" id="watched" name="watched">
         <label for="watched" class="film-details__control-label film-details__control-label--watched">Already watched</label>
-
         <input type="checkbox" class="film-details__control-input visually-hidden" id="favorite" name="favorite">
         <label for="favorite" class="film-details__control-label film-details__control-label--favorite">Add to favorites</label>
       </section>
@@ -249,13 +250,15 @@ renderHtml(siteHeaderElement, createUserRank());
 renderHtml(siteMainElement, createNavigation());
 renderHtml(siteMainElement, createCardSection());
 
-const filmListSection = siteMainElement.querySelector(`.films-list__container`);
+const filmListContainer = siteMainElement.querySelector(`.films-list__container`);
 
 for (let i = 0; i < CARD_COUNT; i++) {
-  renderHtml(filmListSection, createFilmCard());
-};
+  renderHtml(filmListContainer, createFilmCard());
+}
 
+const filmsSection = siteMainElement.querySelector(`.films`);
 
-renderHtml(filmListSection, createShowMoreButton());
-renderHtml(filmListSection, createTopRated());
-renderHtml(filmListSection, createMostCommented());
+const filmsList = siteMainElement.querySelector(`.films-list`);
+renderHtml(filmsList, createShowMoreButton());
+renderHtml(filmsSection, createTopRated());
+renderHtml(filmsSection, createMostCommented());
