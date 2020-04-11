@@ -6,9 +6,8 @@ import {createTopRated} from "./components/top-rated.js";
 import {createFilmCard} from "./components/film-card.js";
 import {createShowMoreButton} from "./components/show-more-button.js";
 import {generateNavigation} from "./mock/navigation.js";
-import {generateFilms, generateDetails} from "./mock/film-card.js";
+import {generateFilms} from "./mock/film-card.js";
 import {createBlockComments} from "./components/comment.js";
-import {generateComments} from "./mock/comments.js";
 import {createPopUp} from "./components/popup.js";
 
 
@@ -28,8 +27,11 @@ renderHtml(siteHeaderElement, createUserRank());
 
 const generateNav = generateNavigation(MENU_ITEM);
 const movies = generateFilms(FILMS_AMOUNT);
-const comments = generateComments(FILM_COUNT);
-const popupDetails = generateDetails();
+const comments = generateFilms(FILM_COUNT);
+let totalFilmsAmount = `total films amount ` + movies.length;
+
+
+const popupDetails = generateFilms(FILMS_AMOUNT);
 
 
 renderHtml(siteMainElement, createNavigation(generateNav));
@@ -57,8 +59,10 @@ loadMoreButton.addEventListener(`click`, () => {
 });
 
 renderHtml(document.body, createPopUp(popupDetails[0]));
+const totalFilmsSection = document.querySelector(`.footer__statistics`);
 
 const filmDetails = document.querySelector(`.film-details`);
 renderHtml(filmDetails, createBlockComments(comments));
 renderHtml(filmsSection, createTopRated());
 renderHtml(filmsSection, createMostCommented());
+renderHtml(totalFilmsSection, totalFilmsAmount);

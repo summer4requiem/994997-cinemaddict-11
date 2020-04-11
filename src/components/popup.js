@@ -1,5 +1,5 @@
-export const createPopUp = (filmDetails) => {
-  const {title, rating, date, posterSrc} = filmDetails;
+export const createPopUp = (moreInfo) => {
+  const {title, rating, release, posterSrc, filmDetails: {director, writers, country}} = moreInfo;
   return (`
   <section class="film-details">
   <form class="film-details__inner" action="" method="get">
@@ -28,11 +28,11 @@ export const createPopUp = (filmDetails) => {
           <table class="film-details__table">
             <tr class="film-details__row">
               <td class="film-details__term">Director</td>
-              <td class="film-details__cell">Anthony Mann</td>
+              <td class="film-details__cell">${director}</td>
             </tr>
             <tr class="film-details__row">
               <td class="film-details__term">Writers</td>
-              <td class="film-details__cell">Anne Wigton, Heinz Herald, Richard Weil</td>
+              <td class="film-details__cell">${writers}</td>
             </tr>
             <tr class="film-details__row">
               <td class="film-details__term">Actors</td>
@@ -40,7 +40,7 @@ export const createPopUp = (filmDetails) => {
             </tr>
             <tr class="film-details__row">
               <td class="film-details__term">Release Date</td>
-              <td class="film-details__cell">${date}</td>
+              <td class="film-details__cell">${release}</td>
             </tr>
             <tr class="film-details__row">
               <td class="film-details__term">Runtime</td>
@@ -48,12 +48,12 @@ export const createPopUp = (filmDetails) => {
             </tr>
             <tr class="film-details__row">
               <td class="film-details__term">Country</td>
-              <td class="film-details__cell">USA</td>
+              <td class="film-details__cell">${country}</td>
             </tr>
             <tr class="film-details__row">
               <td class="film-details__term">Genres</td>
               <td class="film-details__cell">
-                <span class="film-details__genre">Drama</span>
+                <span class="film-details__genre">Horror</span>
                 <span class="film-details__genre">Film-Noir</span>
                 <span class="film-details__genre">Mystery</span></td>
             </tr>

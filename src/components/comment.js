@@ -1,5 +1,5 @@
-export const createCommentsMarkup = (comment) => {
-  const {author, date, time, emoji, text} = comment;
+const createCommentsMarkup = (comment) => {
+  const {comments: {author, date, time, emoji, text}} = comment;
   return (
     `<li class="film-details__comment">
         <span class="film-details__comment-emoji">
@@ -17,11 +17,12 @@ export const createCommentsMarkup = (comment) => {
   );
 };
 
-export const createBlockComments = (comments) => {
+const createBlockComments = (comments) => {
   const commentMarkup = comments.map((it, i) => createCommentsMarkup(it, i)).join(`\n`);
   return (
-    `<section class="film-details__comments-wrap">
-        <h3 class="film-details__comments-title">Comments <span class="film-details__comments-count">4</span></h3>
+    `<div class="form-details__bottom-container">
+       <section class="film-details__comments-wrap">
+        <h3 class="film-details__comments-title">Comments <span class="film-details__comments-count">${comments.length}</span></h3>
 
         <ul class="film-details__comments-list">
          ${commentMarkup}
@@ -41,6 +42,8 @@ export const createBlockComments = (comments) => {
             </label>
           </div>
         </div>
-      </section>`
+      </section>
+      </div>`
   );
 };
+export {createBlockComments};

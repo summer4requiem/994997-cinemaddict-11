@@ -1,8 +1,13 @@
+const MAIN_LINK = `All movies`;
 const createNavigationMarkup = (navItem, isActive) => {
   const {name, count} = navItem;
+  const linkHref = name.toLowerCase().split(` `)[0];
+
+  const isMainLink = name === MAIN_LINK;
+
   return (
-    `<a href="#${name}"class="main-navigation__item main-navigation__item${isActive ? `--active` : ``}">${name}
-   <span class="main-navigation__item-count">${count}</span>
+    `<a href="#${linkHref}"class="main-navigation__item main-navigation__item${isActive ? `--active` : ``}">
+   ${name}${isMainLink ? `` : `<span class="main-navigation__item-count">${count}</span>`}
     </a>`
   );
 };
