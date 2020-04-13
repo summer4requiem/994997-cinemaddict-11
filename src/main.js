@@ -1,9 +1,7 @@
 import {createUserRank} from "./components/user-rank.js";
 import {createNavigation} from "./components/navigation";
 import {createCardSection} from "./components/card-section.js";
-import {createMostCommented} from "./components/most-commented.js";
-import {createTopRated} from "./components/top-rated.js";
-import {createFilmCard} from "./components/film-card.js";
+import {createFilmCard, createfilmExtra} from "./components/film-card.js";
 import {createShowMoreButton} from "./components/show-more-button.js";
 import {generateNavigation} from "./mock/navigation.js";
 import {generateFilms} from "./mock/film-card.js";
@@ -27,11 +25,11 @@ renderHtml(siteHeaderElement, createUserRank());
 
 const generateNav = generateNavigation(MENU_ITEM);
 const movies = generateFilms(FILMS_AMOUNT);
-const comments = generateFilms(FILM_COUNT);
-let totalFilmsAmount = `total films amount ` + movies.length;
+const totalFilmsAmount = `total films amount ` + movies.length;
 
+const topRating = movies.filter((movie) => movie.rating > 7.5).slice(0, 2);
 
-const popupDetails = generateFilms(FILMS_AMOUNT);
+const mostComment = movies.sort((a, b) => b.comments.length - a.comments.length).slice(0, 2);
 
 
 renderHtml(siteMainElement, createNavigation(generateNav));
@@ -58,11 +56,12 @@ loadMoreButton.addEventListener(`click`, () => {
   }
 });
 
-renderHtml(document.body, createPopUp(popupDetails[0]));
+renderHtml(filmsSection, createfilmExtra(topRating, `Top rated`));
+renderHtml(filmsSection, createfilmExtra(mostComment, `Most commented`));
+
+renderHtml(document.body, createPopUp(movies[0]));
 const totalFilmsSection = document.querySelector(`.footer__statistics`);
 
 const filmDetails = document.querySelector(`.film-details`);
-renderHtml(filmDetails, createBlockComments(comments));
-renderHtml(filmsSection, createTopRated());
-renderHtml(filmsSection, createMostCommented());
+renderHtml(filmDetails, createBlockComments(movies[0]));
 renderHtml(totalFilmsSection, totalFilmsAmount);
