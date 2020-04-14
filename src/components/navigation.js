@@ -1,9 +1,9 @@
-const MAIN_LINK = `All movies`;
+const mainLink = `All movies`;
+
 const createNavigationMarkup = (navItem, isActive) => {
   const {name, count} = navItem;
   const linkHref = name.toLowerCase().split(` `)[0];
-
-  const isMainLink = name === MAIN_LINK;
+  const isMainLink = name === mainLink;
 
   return (
     `<a href="#${linkHref}"class="main-navigation__item main-navigation__item${isActive ? `--active` : ``}">
@@ -29,4 +29,5 @@ const createNavigation = (navItems) => {
    </ul>`
   );
 };
+
 export {createNavigationMarkup, createNavigation};

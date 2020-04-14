@@ -1,4 +1,4 @@
-export const createCardSection = () => {
+const createCardSection = () => {
   return (
     `<section class="films">
       <section class="films-list">
@@ -9,3 +9,5 @@ export const createCardSection = () => {
     </section>`
   );
 };
+
+export {createCardSection};

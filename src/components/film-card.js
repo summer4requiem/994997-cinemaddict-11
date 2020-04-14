@@ -1,5 +1,4 @@
-
-export const createFilmCard = (card) => {
+const createFilmCard = (card) => {
   const {title, rating, duration, comments, description, genre, release, isWatched, isFavorite, isAdded, posterSrc} = card;
 
   const watchlistButtonInactiveClass = isWatched ? `` : `card__btn--disabled`;
@@ -27,7 +26,7 @@ export const createFilmCard = (card) => {
   );
 };
 
-export const createfilmExtra = (filmCard, title) => {
+const createfilmExtra = (filmCard, title) => {
   const filmExtraMarkUp = filmCard.map((it) => createFilmCard(it)).join(`\n`);
   return (
     `<section class="films-list--extra">
@@ -39,4 +38,4 @@ export const createfilmExtra = (filmCard, title) => {
   );
 };
 
-
+export {createfilmExtra, createFilmCard};

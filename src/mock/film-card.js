@@ -1,4 +1,5 @@
 import {getRandomNumber, getRandomArrayItem, getRandomInt} from "../utils.js";
+import {EMOTIONS} from "../constants.js";
 
 const titles = [`The Dance of Life`, `The Aviator`, `The Silence`, `Killers of the Flower Moon`, `The source of light`];
 
@@ -30,7 +31,7 @@ const comments = [
   `Look at that plaster on his finger lmao`,
 ];
 
-const description = [
+const descriptions = [
   `Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit`,
   `Cras aliquet varius magna, non porta ligula feugiat eget Lorem ipsum dolor sit amet, consectetur adipiscing elit`,
   `Fusce tristique felis at fermentum pharetra Lorem ipsum dolor sit amet, consectetur adipiscing elit`,
@@ -39,9 +40,7 @@ const description = [
 ];
 
 
-const user = [`John Doe`, `Tim Macoveev`, `John Tim`, `Kirill Maceev`, `Doe Tim`];
-
-export const EMOTIONS = [`angry`, `puke`, `smile`, `sleeping`];
+const users = [`John Doe`, `Tim Macoveev`, `John Tim`, `Kirill Maceev`, `Doe Tim`];
 
 const generateComments = (count) => {
   return new Array(count)
@@ -49,7 +48,7 @@ const generateComments = (count) => {
     .map(() => {
       return {
         text: getRandomArrayItem(comments),
-        author: getRandomArrayItem(user),
+        author: getRandomArrayItem(users),
         date: `12/12/2020`,
         time: ` 22:22`,
         emoji: getRandomArrayItem(EMOTIONS)
@@ -65,7 +64,7 @@ const generateFilm = () => {
     rating: getRandomNumber(1, 10).toFixed(1),
     release: `2012 г`,
     duration: `1h 2m`,
-    description: getRandomArrayItem(description),
+    description: getRandomArrayItem(descriptions),
     genre: getRandomArrayItem(genres),
     isWatched: Math.random() > 0.5,
     isFavorite: Math.random() > 0.5,

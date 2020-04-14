@@ -1,5 +1,4 @@
-
-import {EMOTIONS} from "../mock/film-card.js";
+import {EMOTIONS} from "../constants.js";
 
 const createCommentsMarkup = (comment) => {
   return comment.map(({author, text, date, emoji, time}) => {

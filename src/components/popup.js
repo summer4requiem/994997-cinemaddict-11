@@ -1,4 +1,4 @@
-export const createPopUp = (moreInfo) => {
+const createPopUp = (moreInfo) => {
   const {title, rating, release, description, posterSrc, filmDetails: {director, writers, country}} = moreInfo;
   return (`
   <section class="film-details">
@@ -79,3 +79,5 @@ export const createPopUp = (moreInfo) => {
   </form>
 </section>`);
 };
+
+export {createPopUp};
