@@ -7,12 +7,7 @@ import {generateNavigation} from "./mock/navigation.js";
 import {generateFilms} from "./mock/film-card.js";
 import {createBlockComments} from "./components/comment.js";
 import {createPopUp} from "./components/popup.js";
-
-
-const MENU_ITEM = 4;
-const FILMS_AMOUNT = 15;
-const FILM_COUNT = 5;
-const FILM_AMOUNT_BY_BUTTON = 5;
+import {MENU_ITEM, FILMS_AMOUNT, FILM_COUNT, FILM_AMOUNT_BY_BUTTON} from "./constants.js";
 
 
 const renderHtml = (container, htmlData, place = `beforeend`) => {
