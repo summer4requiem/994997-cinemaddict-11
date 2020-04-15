@@ -1,3 +1,5 @@
+import {createElement} from "../utils.js";
+
 const createFilmCard = (card) => {
   const {title, rating, duration, comments, description, genre, release, isWatched, isFavorite, isAdded, posterSrc} = card;
 
@@ -26,16 +28,26 @@ const createFilmCard = (card) => {
   );
 };
 
-const createfilmExtra = (filmCard, title) => {
-  const filmExtraMarkUp = filmCard.map((it) => createFilmCard(it)).join(`\n`);
-  return (
-    `<section class="films-list--extra">
-    <h2 class="films-list__title">${title}</h2>
-    <div class="films-list__container">
-    ${filmExtraMarkUp}
-    </div>
-  </section>`
-  );
-};
+export default class FilmCard {
+  constructor(card) {
+    this._card = card;
+    this._element = null;
+  }
 
-export {createfilmExtra, createFilmCard};
+  getTemplate() {
+    return createFilmCard(this._card);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}
+export {createFilmCard};

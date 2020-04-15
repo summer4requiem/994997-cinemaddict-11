@@ -1,4 +1,5 @@
 import {EMOTIONS} from "../constants.js";
+import {createElement} from "../utils.js";
 
 const createCommentsMarkup = (comment) => {
   return comment.map(({author, text, date, emoji, time}) => {
@@ -60,4 +61,26 @@ const createBlockComments = (movies) => {
       </div>`
   );
 };
-export {createBlockComments};
+
+export default class BlockComments {
+  constructor(comments) {
+    this._comments = comments;
+    this._element = null;
+  }
+
+  getTemplate() {
+    return createBlockComments(this._comments);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}

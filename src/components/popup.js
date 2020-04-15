@@ -1,7 +1,9 @@
+import {createElement} from "../utils.js";
+
 const createPopUp = (moreInfo) => {
   const {title, rating, release, description, posterSrc, filmDetails: {director, writers, country}} = moreInfo;
-  return (`
-  <section class="film-details">
+  return (
+    `<section class="film-details">
   <form class="film-details__inner" action="" method="get">
     <div class="form-details__top-container">
       <div class="film-details__close">
@@ -77,7 +79,31 @@ const createPopUp = (moreInfo) => {
       </section>
     </div>
   </form>
-</section>`);
+</section>`
+  );
 };
 
-export {createPopUp};
+
+export default class PopUp {
+  constructor(fullCard) {
+    this._fullCard = fullCard;
+    this._element = null;
+  }
+
+  getTemplate() {
+    return createPopUp(this._fullCard);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}
+

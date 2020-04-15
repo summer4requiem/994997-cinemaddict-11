@@ -1,3 +1,5 @@
+import {createElement} from "../utils.js";
+
 const createCardSection = () => {
   return (
     `<section class="films">
@@ -9,5 +11,28 @@ const createCardSection = () => {
     </section>`
   );
 };
+
+export default class CardSection {
+  constructor() {
+    this._element = null;
+  }
+
+  getTemplate() {
+    return createCardSection();
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}
+
 
 export {createCardSection};

@@ -1,3 +1,5 @@
+import {createElement} from "../utils.js";
+
 const mainLink = `All movies`;
 
 const createNavigationMarkup = (navItem, isActive) => {
@@ -29,5 +31,28 @@ const createNavigation = (navItems) => {
    </ul>`
   );
 };
+
+export default class Navigations {
+  constructor(navItems) {
+    this._navItems = navItems;
+    this._element = null;
+  }
+
+  getTemplate() {
+    return createNavigation(this._navItems);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}
 
 export {createNavigationMarkup, createNavigation};
