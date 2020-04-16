@@ -16,7 +16,7 @@ export const RenderPosition = {
   BEFOREEND: `beforeend`
 };
 
-const renderHtml = (container, element, place) => {
+const renderHtml = (container, element, place = `beforeend`) => {
   switch (place) {
     case RenderPosition.AFTERBEGIN:
       container.prepend(element);

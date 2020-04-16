@@ -333,6 +333,7 @@ button {
 
 .film-card__title {
   margin-right: 0.5em;
+  cursor: pointer;
 }
 
 .film-card__rating,
@@ -568,6 +569,7 @@ button {
   margin: 0 auto;
 }
 .film-details__close-btn {
+  cursor: pointer;
   position: relative;
   font-size: 0;
   padding: 0;
