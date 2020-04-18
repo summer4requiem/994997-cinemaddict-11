@@ -1,13 +1,10 @@
-import {createFilmCard} from "./film-card.js";
 import {createElement} from "../utils.js";
 
-export const createfilmExtra = (filmCard, title) => {
-  const filmExtraMarkUp = filmCard.map((it) => createFilmCard(it)).join(`\n`);
+export const createfilmExtra = (title) => {
   return (
     `<section class="films-list--extra">
     <h2 class="films-list__title">${title}</h2>
     <div class="films-list__container">
-    ${filmExtraMarkUp}
     </div>
   </section>`
   );
@@ -28,7 +25,6 @@ export default class FilmExtra {
     if (!this._element) {
       this._element = createElement(this.getTemplate());
     }
-
     return this._element;
   }
 
