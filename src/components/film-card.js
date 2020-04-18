@@ -1,12 +1,19 @@
-const createFilmCard = (card) => {
-  const {title, rating, duration, comments, description, genre, release, isWatched, isFavorite, isAdded, posterSrc} = card;
+import {createElement} from "../utils.js";
 
-  const watchlistButtonInactiveClass = isWatched ? `` : `card__btn--disabled`;
-  const favoriteButtonInactiveClass = isFavorite ? `` : `card__btn--disabled`;
-  const addWatchlistButtonInactiveClass = isAdded ? `` : `card__btn--disabled`;
+export default class FilmCard {
+  constructor(card) {
+    this._card = card;
+    this._element = null;
+  }
 
-  return (
-    `<article class="film-card">
+  _createFilmCard(card) {
+    const {title, rating, duration, comments, description, genre, release, isWatched, isFavorite, isAdded, posterSrc} = card;
+
+    const watchlistButtonInactiveClass = isWatched ? `` : `card__btn--disabled`;
+    const favoriteButtonInactiveClass = isFavorite ? `` : `card__btn--disabled`;
+    const addWatchlistButtonInactiveClass = isAdded ? `` : `card__btn--disabled`;
+    return (
+      `<article class="film-card">
       <h3 class="film-card__title">${title}</h3>
       <p class="film-card__rating">${rating}</p>
       <p class="film-card__info">
@@ -22,20 +29,23 @@ const createFilmCard = (card) => {
         <button class="film-card__controls-item button ${addWatchlistButtonInactiveClass}">Mark as watched</button>
         <button class="film-card__controls-item button ${favoriteButtonInactiveClass}">Mark as favorite</button>
       </form>
-    </article>`
-  );
-};
+       </article>`
+    );
+  }
 
-const createfilmExtra = (filmCard, title) => {
-  const filmExtraMarkUp = filmCard.map((it) => createFilmCard(it)).join(`\n`);
-  return (
-    `<section class="films-list--extra">
-    <h2 class="films-list__title">${title}</h2>
-    <div class="films-list__container">
-    ${filmExtraMarkUp}
-    </div>
-  </section>`
-  );
-};
+  getTemplate() {
+    return this._createFilmCard(this._card);
+  }
 
-export {createfilmExtra, createFilmCard};
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}

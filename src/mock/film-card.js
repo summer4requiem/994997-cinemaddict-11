@@ -69,7 +69,7 @@ const generateFilm = () => {
     isWatched: Math.random() > 0.5,
     isFavorite: Math.random() > 0.5,
     isAdded: Math.random() > 0.5,
-    comments: generateComments(getRandomInt(0, 5)),
+    comments: generateComments(getRandomInt(0, 15)),
     filmDetails: {
       director: `Mann Anne`,
       writers: `Anne Wigton`,
