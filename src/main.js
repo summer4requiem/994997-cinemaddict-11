@@ -1,4 +1,5 @@
 import NavigationComponent from "./components/navigation.js";
+import NoFilms from "./components/no-films.js";
 import CardSectionComponent from "./components/card-section.js";
 import ShowMoreButtonComponent from "./components/show-more-button.js";
 import UserRankComponent from "./components/user-rank.js";
@@ -9,7 +10,7 @@ import {generateFilms} from "./mock/film-card.js";
 import BlockCommentsComponent from "./components/comment.js";
 import PopUpComponent from "./components/popup.js";
 import {renderHtml} from "./utils.js";
-import {MENU_ITEM, FILMS_AMOUNT, FILM_COUNT, FILM_AMOUNT_BY_BUTTON, ESC_BUTTON} from "./constants.js";
+import {MENU_ITEM, FILM_COUNT, FILMS_AMOUNT, FILM_AMOUNT_BY_BUTTON, ESC_BUTTON} from "./constants.js";
 
 const renderFilm = (filmBoard, film) => {
   const comments = new BlockCommentsComponent(film);
@@ -49,6 +50,7 @@ const renderFilm = (filmBoard, film) => {
   renderHtml(filmBoard, filmCard.getElement());
 };
 
+
 const renderExtraBoard = (extraMovies, title) => {
   const filmExtraBlock = new FilmExtraComponent(title).getElement();
   const filmContainer = filmExtraBlock.querySelector(`.films-list__container`);
@@ -79,6 +81,15 @@ movies.slice(0, FILM_COUNT)
 
 const filmsSection = siteMainElement.querySelector(`.films`);
 const filmsList = siteMainElement.querySelector(`.films-list`);
+
+const renderBoard = (boardComponent) => {
+  if (movies.length === 0) {
+    renderHtml(boardComponent, new NoFilms().getElement());
+    return;
+  }
+};
+
+renderBoard(filmListContainer);
 
 renderHtml(filmsList, new ShowMoreButtonComponent().getElement());
 
