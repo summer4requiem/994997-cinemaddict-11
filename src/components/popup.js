@@ -1,15 +1,21 @@
 import {createElement} from "../utils.js";
 
-const createPopUp = (moreInfo) => {
-  const {title, rating, release, description, posterSrc, filmDetails: {director, writers, country}} = moreInfo;
-  return (
-    `<section class="film-details">
-  <form class="film-details__inner" action="" method="get">
-    <div class="form-details__top-container">
-      <div class="film-details__close">
-        <button class="film-details__close-btn" type="button">close</button>
-      </div>
-      <div class="film-details__info-wrap">
+export default class PopUp {
+  constructor(fullCard) {
+    this._fullCard = fullCard;
+    this._element = null;
+  }
+
+  _createPopUpMarkup(moreInfo) {
+    const {title, rating, release, description, posterSrc, filmDetails: {director, writers, country}} = moreInfo;
+    return (
+      `<section class="film-details">
+         <form class="film-details__inner" action="" method="get">
+          <div class="form-details__top-container">
+          <div class="film-details__close">
+          <button class="film-details__close-btn" type="button">close</button>
+          </div>
+        <div class="film-details__info-wrap">
         <div class="film-details__poster">
           <img class="film-details__poster-img" src="./images/posters/${posterSrc}" alt="${title}">
           <p class="film-details__age">18+</p>
@@ -60,7 +66,6 @@ const createPopUp = (moreInfo) => {
                 <span class="film-details__genre">Mystery</span></td>
             </tr>
           </table>
-
           <p class="film-details__film-description">${description}</p>
         </div>
       </div>
@@ -79,19 +84,12 @@ const createPopUp = (moreInfo) => {
       </section>
     </div>
   </form>
-</section>`
-  );
-};
-
-
-export default class PopUp {
-  constructor(fullCard) {
-    this._fullCard = fullCard;
-    this._element = null;
+  </section>`
+    );
   }
 
   getTemplate() {
-    return createPopUp(this._fullCard);
+    return this._createPopUpMarkup(this._fullCard);
   }
 
   getElement() {

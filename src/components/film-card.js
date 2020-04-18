@@ -1,14 +1,19 @@
 import {createElement} from "../utils.js";
 
-const createFilmCard = (card) => {
-  const {title, rating, duration, comments, description, genre, release, isWatched, isFavorite, isAdded, posterSrc} = card;
+export default class FilmCard {
+  constructor(card) {
+    this._card = card;
+    this._element = null;
+  }
 
-  const watchlistButtonInactiveClass = isWatched ? `` : `card__btn--disabled`;
-  const favoriteButtonInactiveClass = isFavorite ? `` : `card__btn--disabled`;
-  const addWatchlistButtonInactiveClass = isAdded ? `` : `card__btn--disabled`;
+  _createFilmCard(card) {
+    const {title, rating, duration, comments, description, genre, release, isWatched, isFavorite, isAdded, posterSrc} = card;
 
-  return (
-    `<article class="film-card">
+    const watchlistButtonInactiveClass = isWatched ? `` : `card__btn--disabled`;
+    const favoriteButtonInactiveClass = isFavorite ? `` : `card__btn--disabled`;
+    const addWatchlistButtonInactiveClass = isAdded ? `` : `card__btn--disabled`;
+    return (
+      `<article class="film-card">
       <h3 class="film-card__title">${title}</h3>
       <p class="film-card__rating">${rating}</p>
       <p class="film-card__info">
@@ -24,18 +29,12 @@ const createFilmCard = (card) => {
         <button class="film-card__controls-item button ${addWatchlistButtonInactiveClass}">Mark as watched</button>
         <button class="film-card__controls-item button ${favoriteButtonInactiveClass}">Mark as favorite</button>
       </form>
-    </article>`
-  );
-};
-
-export default class FilmCard {
-  constructor(card) {
-    this._card = card;
-    this._element = null;
+       </article>`
+    );
   }
 
   getTemplate() {
-    return createFilmCard(this._card);
+    return this._createFilmCard(this._card);
   }
 
   getElement() {
@@ -50,4 +49,3 @@ export default class FilmCard {
     this._element = null;
   }
 }
-export {createFilmCard};

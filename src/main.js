@@ -11,7 +11,6 @@ import PopUpComponent from "./components/popup.js";
 import {renderHtml} from "./utils.js";
 import {MENU_ITEM, FILMS_AMOUNT, FILM_COUNT, FILM_AMOUNT_BY_BUTTON, ESC_BUTTON} from "./constants.js";
 
-
 const renderFilm = (filmBoard, film) => {
   const comments = new BlockCommentsComponent(film);
 
