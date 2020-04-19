@@ -10,7 +10,7 @@ import {generateFilms} from "./mock/film-card.js";
 import BlockCommentsComponent from "./components/comment.js";
 import PopUpComponent from "./components/popup.js";
 import {renderHtml} from "./utils.js";
-import {MENU_ITEM, FILM_COUNT, FILMS_AMOUNT, FILM_AMOUNT_BY_BUTTON, ESC_BUTTON} from "./constants.js";
+import {FILM_COUNT, FILMS_AMOUNT, FILM_AMOUNT_BY_BUTTON, ESC_BUTTON} from "./constants.js";
 
 const renderFilm = (filmBoard, film) => {
   const comments = new BlockCommentsComponent(film);
@@ -50,7 +50,6 @@ const renderFilm = (filmBoard, film) => {
   renderHtml(filmBoard, filmCard.getElement());
 };
 
-
 const renderExtraBoard = (extraMovies, title) => {
   const filmExtraBlock = new FilmExtraComponent(title).getElement();
   const filmContainer = filmExtraBlock.querySelector(`.films-list__container`);
@@ -66,8 +65,8 @@ const userProfile = new UserRankComponent();
 
 renderHtml(siteHeaderElement, userProfile.getElement());
 
-const generateNav = generateNavigation(MENU_ITEM);
 const movies = generateFilms(FILMS_AMOUNT);
+const generateNav = generateNavigation(movies);
 
 renderHtml(siteMainElement, new NavigationComponent(generateNav).getElement());
 renderHtml(siteMainElement, new CardSectionComponent().getElement());
