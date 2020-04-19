@@ -5,7 +5,6 @@ import ShowMoreButtonComponent from "./components/show-more-button.js";
 import UserRankComponent from "./components/user-rank.js";
 import FilmExtraComponent from "./components/film-extra.js";
 import FilmCardComponent from "./components/film-card.js";
-import {generateNavigation} from "./mock/navigation.js";
 import {generateFilms} from "./mock/film-card.js";
 import BlockCommentsComponent from "./components/comment.js";
 import PopUpComponent from "./components/popup.js";
@@ -66,9 +65,8 @@ const userProfile = new UserRankComponent();
 renderHtml(siteHeaderElement, userProfile.getElement());
 
 const movies = generateFilms(FILMS_AMOUNT);
-const generateNav = generateNavigation(movies);
 
-renderHtml(siteMainElement, new NavigationComponent(generateNav).getElement());
+renderHtml(siteMainElement, new NavigationComponent(movies).getElement());
 renderHtml(siteMainElement, new CardSectionComponent().getElement());
 
 const filmListContainer = siteMainElement.querySelector(`.films-list__container`);

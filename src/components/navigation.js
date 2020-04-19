@@ -1,9 +1,27 @@
 import {createElement} from "../utils.js";
 
 export default class Navigations {
-  constructor(navItems) {
-    this._navItems = navItems;
+  constructor(films) {
+    this._films = films;
     this._element = null;
+  }
+
+  _generateNavigation(films) {
+    const navItemsTitle = [`All movies`, `Watchlist`, `History`, `Favorites`];
+
+    const watchedFilms = films.filter((film) => film.isWatched);
+    const addedFilms = films.filter((film) => film.isAdded);
+    const favoriteFilms = films.filter((film) => film.isFavorite);
+
+    const navItemsCount = [0, watchedFilms.length, addedFilms.length, favoriteFilms.length];
+
+    const navItems = navItemsTitle.map((it, i) => {
+      return {
+        name: it,
+        count: navItemsCount[i]
+      };
+    });
+    return this._createNavigationMarkup(navItems);
   }
 
   _createNavigation(navItem, isActive) {
@@ -36,7 +54,7 @@ export default class Navigations {
   }
 
   getTemplate() {
-    return this._createNavigationMarkup(this._navItems);
+    return this._generateNavigation(this._films);
   }
 
   getElement() {
