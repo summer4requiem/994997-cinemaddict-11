@@ -1,4 +1,4 @@
-import PageController from "./controllers/PageController.js";
+import PageController from "./controllers/page-controller.js";
 import CardSectionComponent from "./components/card-section.js";
 import {generateFilms} from "./mock/film-card.js";
 import {renderHtml} from "./utils.js";
