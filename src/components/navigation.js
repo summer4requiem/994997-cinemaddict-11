@@ -1,7 +1,8 @@
-import {createElement} from "../utils.js";
+import AbstractComponent from "../abstract-component.js";
 
-export default class Navigations {
+export default class Navigations extends AbstractComponent {
   constructor(films) {
+    super();
     this._films = films;
     this._element = null;
   }
@@ -26,7 +27,10 @@ export default class Navigations {
 
   _createNavigation(navItem, isActive) {
     const mainLink = `All movies`;
-    const {name, count} = navItem;
+    const {
+      name,
+      count
+    } = navItem;
     const linkHref = name.toLowerCase().split(` `)[0];
     const isMainLink = name === mainLink;
     return (
@@ -55,17 +59,5 @@ export default class Navigations {
 
   getTemplate() {
     return this._generateNavigation(this._films);
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
   }
 }

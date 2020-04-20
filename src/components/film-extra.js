@@ -1,7 +1,8 @@
-import {createElement} from "../utils.js";
+import AbstractComponent from "../abstract-component.js";
 
-export default class FilmExtra {
+export default class FilmExtra extends AbstractComponent {
   constructor(title) {
+    super();
     this._title = title;
     this._element = null;
   }
@@ -14,16 +15,5 @@ export default class FilmExtra {
          </div>
       </section>`
     );
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
   }
 }
