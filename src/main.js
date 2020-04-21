@@ -26,4 +26,3 @@ pageControl.render(movies);
 
 const totalFilmsSection = document.querySelector(`.footer__statistics`);
 totalFilmsSection.innerHTML = movies.length + ` total films amount`;
-
