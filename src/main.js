@@ -24,6 +24,5 @@ renderHtml(siteMainElement, cardSection);
 pageControl.render(movies);
 
 
-// const totalFilmsSection = document.querySelector(`.footer__statistics`);
-// const totalFilmsAmount = `total films amount ` + movies.length;
-// renderHtml(totalFilmsSection, totalFilmsAmount);
+const totalFilmsSection = document.querySelector(`.footer__statistics`);
+totalFilmsSection.innerHTML = movies.length + ` total films amount`;
