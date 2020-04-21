@@ -11,20 +11,25 @@ const createElement = (template) => {
   return newElement.firstChild;
 };
 
-export const RenderPosition = {
+const RenderPosition = {
   AFTERBEGIN: `afterbegin`,
   BEFOREEND: `beforeend`
 };
 
-const renderHtml = (container, element, place = `beforeend`) => {
+const renderHtml = (container, component, place = `beforeend`) => {
   switch (place) {
     case RenderPosition.AFTERBEGIN:
-      container.prepend(element);
+      container.prepend(component.getElement());
       break;
     case RenderPosition.BEFOREEND:
-      container.append(element);
+      container.append(component.getElement());
       break;
   }
 };
 
-export {getRandomNumber, getRandomArrayItem, getRandomInt, createElement, renderHtml};
+const remove = (component) => {
+  component.getElement().remove();
+  component.removeElement();
+};
+
+export {getRandomNumber, getRandomArrayItem, getRandomInt, createElement, renderHtml, remove, RenderPosition};

@@ -1,8 +1,9 @@
 import {EMOTIONS} from "../constants.js";
-import {createElement} from "../utils.js";
+import AbstractComponent from "../abstract-component.js";
 
-export default class BlockComments {
+export default class BlockComments extends AbstractComponent {
   constructor(comments) {
+    super();
     this._comments = comments;
     this._element = null;
   }
@@ -70,17 +71,5 @@ export default class BlockComments {
 
   getTemplate() {
     return this._createBlockComments(this._comments);
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
   }
 }

@@ -1,7 +1,8 @@
-import {createElement} from "../utils.js";
+import AbstractComponent from "../abstract-component.js";
 
-export default class FilmCard {
+export default class FilmCard extends AbstractComponent {
   constructor(card) {
+    super();
     this._card = card;
     this._element = null;
   }
@@ -35,17 +36,5 @@ export default class FilmCard {
 
   getTemplate() {
     return this._createFilmCard(this._card);
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
   }
 }
