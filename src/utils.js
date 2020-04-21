@@ -32,4 +32,5 @@ const remove = (component) => {
   component.removeElement();
 };
 
+
 export {getRandomNumber, getRandomArrayItem, getRandomInt, createElement, renderHtml, remove, RenderPosition};

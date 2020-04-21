@@ -62,7 +62,7 @@ const generateFilm = () => {
     title: getRandomArrayItem(titles),
     posterSrc: getRandomArrayItem(posters),
     rating: getRandomNumber(1, 10).toFixed(1),
-    release: `2012 г`,
+    release: `2012`,
     duration: `1h 2m`,
     description: getRandomArrayItem(descriptions),
     genre: getRandomArrayItem(genres),
