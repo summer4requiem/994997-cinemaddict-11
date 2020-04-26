@@ -1,4 +1,4 @@
-import AbstractComponent from "../abstract-component.js";
+import AbstractComponent from "./abstract-component.js";
 
 export default class FilmCard extends AbstractComponent {
   constructor(card) {
@@ -9,10 +9,11 @@ export default class FilmCard extends AbstractComponent {
 
   _createFilmCard(card) {
     const {title, rating, duration, comments, description, genre, release, isWatched, isFavorite, isAdded, posterSrc} = card;
+    const activeLink = `film-card__controls-item--active`;
+    const watchlistButtonInactiveClass = isWatched ? activeLink : ``;
+    const favoriteButtonInactiveClass = isFavorite ? activeLink : ``;
+    const addWatchlistButtonInactiveClass = isAdded ? activeLink : ``;
 
-    const watchlistButtonInactiveClass = isWatched ? `` : `card__btn--disabled`;
-    const favoriteButtonInactiveClass = isFavorite ? `` : `card__btn--disabled`;
-    const addWatchlistButtonInactiveClass = isAdded ? `` : `card__btn--disabled`;
     return (
       `<article class="film-card">
       <h3 class="film-card__title">${title}</h3>
@@ -26,9 +27,9 @@ export default class FilmCard extends AbstractComponent {
       <p class="film-card__description">${description}</p>
       <a class="film-card__comments">${comments.length} comments</>
       <form class="film-card__controls">
-        <button class="film-card__controls-item button ${watchlistButtonInactiveClass}">Add to watchlist</button>
-        <button class="film-card__controls-item button ${addWatchlistButtonInactiveClass}">Mark as watched</button>
-        <button class="film-card__controls-item button ${favoriteButtonInactiveClass}">Mark as favorite</button>
+        <button class="film-card__controls-item button film-card__controls-item--add-to-watchlist ${watchlistButtonInactiveClass}">Add to watchlist</button>
+        <button class="film-card__controls-item button film-card__controls-item--mark-as-watched ${favoriteButtonInactiveClass}">Mark as watched</button>
+        <button class="film-card__controls-item button film-card__controls-item--favorite ${addWatchlistButtonInactiveClass}">Mark as favorite</button>
       </form>
        </article>`
     );
@@ -36,5 +37,30 @@ export default class FilmCard extends AbstractComponent {
 
   getTemplate() {
     return this._createFilmCard(this._card);
+  }
+
+  setPopupShowingClickHandler(handler) {
+    const cardPoster = this.getElement().querySelector(`.film-card__poster`);
+    const cardTitle = this.getElement().querySelector(`.film-card__title`);
+    const cardComments = this.getElement().querySelector(`.film-card__comments`);
+
+    cardPoster.addEventListener(`click`, handler);
+    cardTitle.addEventListener(`click`, handler);
+    cardComments.addEventListener(`click`, handler);
+  }
+
+  setAddToWatchClickHandler(handler) {
+    this.getElement().querySelector(`.film-card__controls-item--add-to-watchlist`)
+      .addEventListener(`click`, handler);
+  }
+
+  setAlreadyWatchedClickHandler(handler) {
+    this.getElement().querySelector(`.film-card__controls-item--mark-as-watched`)
+      .addEventListener(`click`, handler);
+  }
+
+  setAddToFavoritesClickHandler(handler) {
+    this.getElement().querySelector(`.film-card__controls-item--favorite`)
+      .addEventListener(`click`, handler);
   }
 }
