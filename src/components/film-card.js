@@ -25,7 +25,7 @@ export default class FilmCard extends AbstractComponent {
       </p>
       <img src="./images/posters/${posterSrc}" alt="" class="film-card__poster">
       <p class="film-card__description">${description}</p>
-      <a class="film-card__comments">${comments.length} comments</>
+      <a class="film-card__comments">${comments.length} comments</a>
       <form class="film-card__controls">
         <button class="film-card__controls-item button film-card__controls-item--add-to-watchlist ${watchlistButtonInactiveClass}">Add to watchlist</button>
         <button class="film-card__controls-item button film-card__controls-item--mark-as-watched ${favoriteButtonInactiveClass}">Mark as watched</button>
