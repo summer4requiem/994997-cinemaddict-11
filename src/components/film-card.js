@@ -11,8 +11,8 @@ export default class FilmCard extends AbstractComponent {
     const {title, rating, duration, comments, description, genre, release, isWatched, isFavorite, isAdded, posterSrc} = card;
     const activeLink = `film-card__controls-item--active`;
     const watchlistButtonInactiveClass = isWatched ? activeLink : ``;
-    const favoriteButtonInactiveClass = isFavorite ? activeLink : ``;
     const addWatchlistButtonInactiveClass = isAdded ? activeLink : ``;
+    const favoriteButtonInactiveClass = isFavorite ? activeLink : ``;
 
     return (
       `<article class="film-card">
@@ -28,8 +28,8 @@ export default class FilmCard extends AbstractComponent {
       <a class="film-card__comments">${comments.length} comments</a>
       <form class="film-card__controls">
         <button class="film-card__controls-item button film-card__controls-item--add-to-watchlist ${watchlistButtonInactiveClass}">Add to watchlist</button>
-        <button class="film-card__controls-item button film-card__controls-item--mark-as-watched ${favoriteButtonInactiveClass}">Mark as watched</button>
-        <button class="film-card__controls-item button film-card__controls-item--favorite ${addWatchlistButtonInactiveClass}">Mark as favorite</button>
+        <button class="film-card__controls-item button film-card__controls-item--mark-as-watched ${addWatchlistButtonInactiveClass}">Mark as watched</button>
+        <button class="film-card__controls-item button film-card__controls-item--favorite ${favoriteButtonInactiveClass}">Mark as favorite</button>
       </form>
        </article>`
     );

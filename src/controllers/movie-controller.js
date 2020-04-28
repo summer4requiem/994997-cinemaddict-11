@@ -35,13 +35,14 @@ export default class MovieController {
     this._filmCardComponent = new FilmCardComponent(film);
     this._popUpComponent = new PopUpComponent(film);
 
-    this._filmCardComponent.setAlreadyWatchedClickHandler(() => {
+
+    this._filmCardComponent.setAddToWatchClickHandler(() => {
       this._onDataChange(this, film, Object.assign({}, film, {
         isWatched: !film.isWatched,
       }));
     });
 
-    this._filmCardComponent.setAddToWatchClickHandler(() => {
+    this._filmCardComponent.setAlreadyWatchedClickHandler(() => {
       this._onDataChange(this, film, Object.assign({}, film, {
         isAdded: !film.isAdded,
       }));
@@ -53,14 +54,6 @@ export default class MovieController {
       }));
     });
 
-
-    if (oldFilmComponent && oldPopUpComponent) {
-      replace(oldFilmComponent, this._filmCardComponent);
-      replace(oldPopUpComponent, this._popUpComponent);
-    } else {
-      renderHtml(this._container, this._filmCardComponent);
-    }
-
     this._filmCardComponent.setPopupShowingClickHandler(() => {
       this._mode = Mode.POPUP;
       const topContainer = this._popUpComponent.getElement().querySelector(`.form-details__top-container`);
@@ -71,6 +64,13 @@ export default class MovieController {
       this._popUpComponent.setOnCloseButtonClick(this._removePopUp);
       document.addEventListener(`keydown`, this._onEscKeyDown);
     });
+
+    if (oldFilmComponent && oldPopUpComponent) {
+      replace(oldFilmComponent, this._filmCardComponent);
+      replace(oldPopUpComponent, this._popUpComponent);
+    } else {
+      renderHtml(this._container, this._filmCardComponent);
+    }
 
     renderHtml(this._container, this._filmCardComponent);
   }
