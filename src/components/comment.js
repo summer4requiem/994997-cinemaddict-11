@@ -1,11 +1,12 @@
 import {EMOTIONS} from "../constants.js";
-import AbstractComponent from "../abstract-component.js";
+import AbstractComponent from "./abstract-component.js";
 
 export default class BlockComments extends AbstractComponent {
   constructor(comments) {
     super();
     this._comments = comments;
     this._element = null;
+    this._currentEmoji = null;
   }
 
   _createCommentsMarkup(comment) {
@@ -55,7 +56,9 @@ export default class BlockComments extends AbstractComponent {
            ${commentMarkup}
           </ul>
           <div class="film-details__new-comment">
-            <div for="add-emoji" class="film-details__add-emoji-label"></div>
+            <div for="add-emoji" class="film-details__add-emoji-label">
+            <img src="./images/emoji/.png" alt="" width="55" height="55">
+            </div>
             <label class="film-details__comment-label">
               <textarea class="film-details__comment-input" placeholder="Select reaction below and write comment here" name="comment"></textarea>
             </label>
@@ -71,5 +74,16 @@ export default class BlockComments extends AbstractComponent {
 
   getTemplate() {
     return this._createBlockComments(this._comments);
+  }
+
+  setonEmojisClick() {
+    this.getElement().querySelector(`.film-details__new-comment`)
+      .addEventListener(`change`, (evt) => {
+        if (evt.target.name !== `comment-emoji`) {
+          return;
+        }
+        this._currentEmoji = evt.target.value;
+        this.getElement().querySelector(`.film-details__add-emoji-label img`).src = `./images/emoji/` + evt.target.value + `.png`;
+      });
   }
 }

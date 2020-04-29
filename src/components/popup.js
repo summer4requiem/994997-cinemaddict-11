@@ -1,10 +1,12 @@
-import AbstractComponent from "../abstract-component.js";
+import AbstractSmartComponent from "./abstract-smart-component.js";
 
-export default class PopUp extends AbstractComponent {
+
+export default class PopUp extends AbstractSmartComponent {
   constructor(fullCard) {
     super();
     this._fullCard = fullCard;
     this._element = null;
+    this._setCloseButtonClickHandler = null;
   }
 
   _createPopUpMarkup(moreInfo) {
@@ -91,5 +93,16 @@ export default class PopUp extends AbstractComponent {
 
   getTemplate() {
     return this._createPopUpMarkup(this._fullCard);
+  }
+
+  recoveryListeners() {
+    this.setOnCloseButtonClick(this._submitHandler);
+    this._subscribeOnEvents();
+  }
+
+  setOnCloseButtonClick(handler) {
+    this.getElement().querySelector(`.film-details__close-btn`)
+    .addEventListener(`click`, handler);
+    this._setCloseButtonClickHandler = handler;
   }
 }
