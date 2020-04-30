@@ -1,4 +1,5 @@
 import AbstractSmartComponent from "./abstract-smart-component.js";
+// import FilmCard from "./film-card.js";
 
 
 export default class PopUp extends AbstractSmartComponent {
@@ -10,7 +11,7 @@ export default class PopUp extends AbstractSmartComponent {
   }
 
   _createPopUpMarkup(moreInfo) {
-    const {title, rating, release, description, posterSrc, filmDetails: {director, writers, country}} = moreInfo;
+    const {title, rating, release, description, posterSrc, isWatched, isAdded, isFavorite, filmDetails: {director, writers, country}} = moreInfo;
     return (
       `<section class="film-details">
          <form class="film-details__inner" action="" method="get">
@@ -74,13 +75,13 @@ export default class PopUp extends AbstractSmartComponent {
       </div>
 
       <section class="film-details__controls">
-        <input type="checkbox" class="film-details__control-input visually-hidden" id="watchlist" name="watchlist">
+        <input type="checkbox" class="film-details__control-input visually-hidden" id="watchlist" name="watchlist" ${isWatched ? `checked` : ``}>
         <label for="watchlist" class="film-details__control-label film-details__control-label--watchlist">Add to watchlist</label>
 
-        <input type="checkbox" class="film-details__control-input visually-hidden" id="watched" name="watched">
+        <input type="checkbox" class="film-details__control-input visually-hidden" id="watched" name="watched" ${isAdded ? `checked` : ``}>
         <label for="watched" class="film-details__control-label film-details__control-label--watched">Already watched</label>
 
-        <input type="checkbox" class="film-details__control-input visually-hidden" id="favorite" name="favorite">
+        <input type="checkbox" class="film-details__control-input visually-hidden" id="favorite" name="favorite" ${isFavorite ? `checked` : ``}>
         <label for="favorite" class="film-details__control-label film-details__control-label--favorite">Add to favorites</label>
       </section>
     </div>
@@ -103,6 +104,21 @@ export default class PopUp extends AbstractSmartComponent {
   setOnCloseButtonClick(handler) {
     this.getElement().querySelector(`.film-details__close-btn`)
     .addEventListener(`click`, handler);
-    this._setCloseButtonClickHandler = handler;
+  }
+
+
+  setOnAddToWatchlistClick(handler) {
+    this.getElement().querySelector(`#watchlist`)
+      .addEventListener(`click`, handler);
+  }
+
+  setOnAlreadyWatchedClick(handler) {
+    this.getElement().querySelector(`#watched`)
+      .addEventListener(`click`, handler);
+  }
+
+  setOnAddToFavoritesClick(handler) {
+    this.getElement().querySelector(`#favorite`)
+      .addEventListener(`click`, handler);
   }
 }
