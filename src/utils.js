@@ -1,3 +1,5 @@
+import moment from "moment";
+
 const getRandomNumber = (min, max) => min + (Math.random() * (max - min));
 
 const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min)) + min;
@@ -45,4 +47,13 @@ const replace = (newComponent, oldComponent) => {
 };
 
 
-export {getRandomNumber, getRandomArrayItem, getRandomInt, createElement, renderHtml, remove, RenderPosition, replace};
+const formatTime = (date) => {
+  return moment(date).format(`h[h] m[m]`);
+};
+
+const formatDate = (date) => {
+  return moment(date).format(`D MMMM YYYY`);
+};
+
+export {getRandomNumber, getRandomArrayItem, getRandomInt, createElement, renderHtml, remove, RenderPosition, replace, formatTime, formatDate};
+
