@@ -76,7 +76,6 @@ export default class PageController {
 
     this._showedFilmsControllers = this._showedFilmsControllers.concat(newFilms);
 
-    renderHtml(filmsList, this._showMoreButtonComponent);
     this._renderShowMoreButton();
 
     const renderExtraBoard = (extraMovies, title) => {
@@ -102,7 +101,7 @@ export default class PageController {
       return;
     }
 
-    const container = this._container.getElement();
+    const container = document.querySelector(`.films-list`);
     renderHtml(container, this._showMoreButtonComponent);
 
     this._showMoreButtonComponent.setShowMoreBtnClickHandler(() => {
@@ -121,7 +120,6 @@ export default class PageController {
       }
     });
   }
-
 
   _onDataChange(movieController, oldData, newData) {
     const index = this._films.findIndex((it) => it === oldData);

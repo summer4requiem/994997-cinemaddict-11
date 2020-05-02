@@ -1,4 +1,5 @@
 import AbstractComponent from "./abstract-component.js";
+import {formatDate} from "../utils.js";
 
 export default class FilmCard extends AbstractComponent {
   constructor(card) {
@@ -9,13 +10,13 @@ export default class FilmCard extends AbstractComponent {
 
   _createFilmCard(card) {
     const {title, rating, duration, comments, isWatched, isAdded, isFavorite, description, genre, release, posterSrc} = card;
-
+    const formatedDate = formatDate(release);
     return (
       `<article class="film-card">
       <h3 class="film-card__title">${title}</h3>
       <p class="film-card__rating">${rating}</p>
       <p class="film-card__info">
-        <span class="film-card__year">${release}</span>
+        <span class="film-card__year">${formatedDate}</span>
         <span class="film-card__duration">${duration}</span>
         <span class="film-card__genre">${genre}</span>
       </p>
