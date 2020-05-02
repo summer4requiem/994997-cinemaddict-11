@@ -1,4 +1,4 @@
-// import {formatTime, formatDate} from "../utils.js";
+import {formatTime, formatDate} from "../utils.js";
 import {getRandomNumber, getRandomArrayItem, getRandomInt} from "../utils.js";
 import {EMOTIONS} from "../constants.js";
 
@@ -57,13 +57,14 @@ const generateComments = (count) => {
     });
 };
 
+
 const generateFilm = () => {
   return {
     title: getRandomArrayItem(titles),
     posterSrc: getRandomArrayItem(posters),
     rating: getRandomNumber(1, 10).toFixed(1),
-    release: getRandomNumber(1997, 2020).toFixed(0),
-    duration: `1h 24m`,
+    release: formatDate(getRandomInt(0, Date.now())),
+    duration: formatTime(getRandomInt(-7200000, 0)),
     description: getRandomArrayItem(descriptions),
     genre: getRandomArrayItem(genres),
     isWatched: Math.random() > 0.5,

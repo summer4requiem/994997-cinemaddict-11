@@ -46,13 +46,14 @@ const replace = (newComponent, oldComponent) => {
   }
 };
 
+
 const formatTime = (date) => {
-  return moment(date).format(`hh:mm`);
+  return moment(date).format(`h[h] m[m]`);
 };
 
 const formatDate = (date) => {
-  return moment(date).format(`DD MMMM YYYY`);
+  return moment(date).format(`D MMMM YYYY`);
 };
 
-
 export {getRandomNumber, getRandomArrayItem, getRandomInt, createElement, renderHtml, remove, RenderPosition, replace, formatTime, formatDate};
+
