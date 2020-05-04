@@ -60,6 +60,7 @@ const generateComments = (count) => {
 
 const generateFilm = () => {
   return {
+    id: String(new Date() + Math.random()),
     title: getRandomArrayItem(titles),
     posterSrc: getRandomArrayItem(posters),
     rating: getRandomNumber(1, 10).toFixed(1),

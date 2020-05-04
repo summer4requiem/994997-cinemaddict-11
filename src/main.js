@@ -5,11 +5,15 @@ import {renderHtml} from "./utils.js";
 import NavigationComponent from "./components/navigation.js";
 import {FILMS_AMOUNT} from "./constants.js";
 import UserRankComponent from "./components/user-rank.js";
+import FilmsModel from "./models/films.js";
 
 const siteMainElement = document.querySelector(`.main`);
-const movies = generateFilms(FILMS_AMOUNT);
+const films = generateFilms(FILMS_AMOUNT);
 
-renderHtml(siteMainElement, new NavigationComponent(movies));
+const filmsModel = new FilmsModel();
+filmsModel.setFilms(films);
+
+renderHtml(siteMainElement, new NavigationComponent(films));
 
 const userProfile = new UserRankComponent();
 
@@ -18,11 +22,11 @@ renderHtml(siteHeaderElement, userProfile);
 
 
 const cardSection = new CardSectionComponent();
-const pageControl = new PageController(cardSection);
+const pageControl = new PageController(cardSection, filmsModel);
 
 renderHtml(siteMainElement, cardSection);
-pageControl.render(movies);
+pageControl.render(films);
 
 
 const totalFilmsSection = document.querySelector(`.footer__statistics`);
-totalFilmsSection.innerHTML = movies.length + ` total films amount`;
+totalFilmsSection.innerHTML = films.length + ` total films amount`;
