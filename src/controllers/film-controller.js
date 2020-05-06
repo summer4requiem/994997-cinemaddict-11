@@ -1,11 +1,11 @@
 import FilmCardComponent from "../components/film-card.js";
 import PopUpComponent from "../components/popup.js";
-import {renderHtml, remove, replace} from "../utils.js";
-import {ESC_BUTTON} from "../constants.js";
+import {renderHtml, remove, replace} from "../utils/common.js";
+import {ESC_BUTTON} from "../utils/constants.js";
 import BlockCommentsComponent from "../components/comment.js";
 
 
-export default class MovieController {
+export default class FilmController {
   constructor(container, onDataChange, onViewChange) {
     this._container = container;
     this._onDataChange = onDataChange;
@@ -87,6 +87,13 @@ export default class MovieController {
     });
   }
 
+  destroy() {
+    this._popUpComponent = new PopUpComponent(this._filmInfo);
+    remove(this._popUpComponent);
+    remove(this._filmCardComponent);
+    document.removeEventListener(`keydown`, this._onEscKeyDown);
+  }
+
   setDefaultView() {
     if (this._popUpComponent) {
       remove(this._popUpComponent);
@@ -104,5 +111,4 @@ export default class MovieController {
       remove(this._popUpComponent);
     }
   }
-
 }

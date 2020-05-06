@@ -1,5 +1,5 @@
 import AbstractSmartComponent from "./abstract-smart-component.js";
-// import FilmCard from "./film-card.js";
+import {formatDate} from "../utils/common.js";
 
 
 export default class PopUp extends AbstractSmartComponent {
@@ -12,6 +12,7 @@ export default class PopUp extends AbstractSmartComponent {
 
   _createPopUpMarkup(moreInfo) {
     const {title, rating, release, description, posterSrc, isWatched, isAdded, isFavorite, filmDetails: {director, writers, country}} = moreInfo;
+    const formatedDate = formatDate(release);
     return (
       `<section class="film-details">
          <form class="film-details__inner" action="" method="get">
@@ -52,7 +53,7 @@ export default class PopUp extends AbstractSmartComponent {
             </tr>
             <tr class="film-details__row">
               <td class="film-details__term">Release Date</td>
-              <td class="film-details__cell">${release}</td>
+              <td class="film-details__cell">${formatedDate}</td>
             </tr>
             <tr class="film-details__row">
               <td class="film-details__term">Runtime</td>
@@ -91,6 +92,20 @@ export default class PopUp extends AbstractSmartComponent {
   </section>`
     );
   }
+
+  parseFormData(formData) {
+    return {
+      description: formData.get(`text`),
+    };
+  }
+
+  getData() {
+    const form = this.getElement().querySelector(`.film-details__inner`);
+    const formData = new FormData(form);
+
+    return this.parseFormData(formData);
+  }
+
 
   getTemplate() {
     return this._createPopUpMarkup(this._fullCard);

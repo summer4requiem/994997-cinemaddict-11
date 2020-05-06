@@ -1,5 +1,5 @@
 import AbstractComponent from "./abstract-component.js";
-import {formatDate} from "../utils.js";
+import {formatDate} from "../utils/common.js";
 
 export default class FilmCard extends AbstractComponent {
   constructor(card) {

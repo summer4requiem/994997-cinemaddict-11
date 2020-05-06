@@ -1,6 +1,6 @@
-import {formatTime} from "../utils.js";
-import {getRandomNumber, getRandomArrayItem, getRandomInt} from "../utils.js";
-import {EMOTIONS} from "../constants.js";
+import {formatTime} from "../utils/common.js";
+import {getRandomNumber, getRandomArrayItem, getRandomInt} from "../utils/common.js";
+import {EMOTIONS} from "../utils/constants.js";
 
 const titles = [`The Dance of Life`, `The Aviator`, `The Silence`, `Killers of the Flower Moon`, `The source of light`];
 

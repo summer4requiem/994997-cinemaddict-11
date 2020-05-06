@@ -1,4 +1,4 @@
-import {EMOTIONS} from "../constants.js";
+import {EMOTIONS} from "../utils/constants.js";
 import AbstractComponent from "./abstract-component.js";
 
 export default class BlockComments extends AbstractComponent {
