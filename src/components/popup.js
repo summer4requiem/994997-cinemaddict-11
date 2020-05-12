@@ -8,6 +8,7 @@ export default class PopUp extends AbstractSmartComponent {
     this._fullCard = fullCard;
     this._element = null;
     this._setCloseButtonClickHandler = null;
+    this._submitHandler = null;
   }
 
   _createPopUpMarkup(moreInfo) {
@@ -106,6 +107,17 @@ export default class PopUp extends AbstractSmartComponent {
     return this.parseFormData(formData);
   }
 
+  setSubmitHandler(handler) {
+    this.getElement().querySelector(`form`)
+      .addEventListener(`submit`, handler);
+
+    this._submitHandler = handler;
+  }
+
+  setAddCommentHandler(handler) {
+    const commentField = this.getElement().querySelector(`.film-details__comment-input`);
+    commentField.addEventListener(`keydown`, handler);
+  }
 
   getTemplate() {
     return this._createPopUpMarkup(this._fullCard);
@@ -120,7 +132,6 @@ export default class PopUp extends AbstractSmartComponent {
     this.getElement().querySelector(`.film-details__close-btn`)
     .addEventListener(`click`, handler);
   }
-
 
   setOnAddToWatchlistClick(handler) {
     this.getElement().querySelector(`#watchlist`)

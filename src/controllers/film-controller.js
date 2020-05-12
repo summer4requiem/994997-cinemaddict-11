@@ -4,9 +4,15 @@ import {renderHtml, remove, replace} from "../utils/common.js";
 import {ESC_BUTTON} from "../utils/constants.js";
 import BlockCommentsComponent from "../components/comment.js";
 
+export const Mode = {
+  ADDING: `adding`,
+  DEFAULT: `default`,
+  EDIT: `edit`,
+};
 
 export default class FilmController {
   constructor(container, onDataChange, onViewChange) {
+    this.id = null;
     this._container = container;
     this._onDataChange = onDataChange;
     this._onViewChange = onViewChange;
@@ -15,19 +21,19 @@ export default class FilmController {
     this._filmCardComponent = null;
     this._popUpComponent = null;
     this._comments = null;
+    this.creatingComment = null;
 
     this._removePopUp = this._removePopUp.bind(this);
     this._onEscKeyDown = this._onEscKeyDown.bind(this);
     this._showPopup = this._showPopup.bind(this);
   }
 
-
   render(film) {
+    this.id = film.id;
     this._filmInfo = film;
     const oldFilmComponent = this._filmCardComponent;
-    this._comments = new BlockCommentsComponent(this._filmInfo);
     this._filmCardComponent = new FilmCardComponent(this._filmInfo);
-
+    this._commentsComponent = new BlockCommentsComponent(this._filmInfo);
 
     this._filmCardComponent.setAddToWatchClickHandler((evt) => {
       evt.preventDefault();
@@ -59,14 +65,14 @@ export default class FilmController {
 
   _showPopup() {
     this._popUpComponent = new PopUpComponent(this._filmInfo);
+    this._commentsComponent = new BlockCommentsComponent(this._filmInfo);
     const topContainer = this._popUpComponent.getElement().querySelector(`.form-details__top-container`);
     renderHtml(document.body, this._popUpComponent);
-    renderHtml(topContainer, this._comments);
-    this._comments.setonEmojisClick();
+    renderHtml(topContainer, this._commentsComponent);
+    this._commentsComponent.setonEmojisClick();
 
     this._popUpComponent.setOnCloseButtonClick(this._removePopUp);
     document.addEventListener(`keydown`, this._onEscKeyDown);
-
 
     this._popUpComponent.setOnAddToWatchlistClick(() => {
       this._onDataChange(this, this._filmInfo, Object.assign({}, this._filmInfo, {
@@ -85,6 +91,13 @@ export default class FilmController {
         isFavorite: !this._filmInfo.isFavorite,
       }));
     });
+
+    this._popUpComponent.setSubmitHandler((evt) => {
+      evt.preventDefault();
+      const data = this._commentsComponent.getData();
+      this._onDataChange(this, this._comments, data);
+    });
+    this._commentsComponent.setOnCommentDeleteClick(() => this._onDataChange(this, this._comments, null));
   }
 
   destroy() {

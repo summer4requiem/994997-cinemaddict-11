@@ -55,5 +55,16 @@ const formatDate = (date) => {
   return moment(date).format(`D MMMM YYYY`);
 };
 
-export {getRandomNumber, getRandomArrayItem, getRandomInt, createElement, renderHtml, remove, RenderPosition, replace, formatTime, formatDate};
 
+export {
+  getRandomNumber,
+  getRandomArrayItem,
+  getRandomInt,
+  createElement,
+  renderHtml,
+  remove,
+  RenderPosition,
+  replace,
+  formatTime,
+  formatDate,
+};

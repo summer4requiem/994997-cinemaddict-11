@@ -48,6 +48,7 @@ const generateComments = (count) => {
     .fill(``)
     .map(() => {
       return {
+        id: String(new Date() + Math.random()),
         text: getRandomArrayItem(comments),
         author: getRandomArrayItem(users),
         date: `12/12/2020`,

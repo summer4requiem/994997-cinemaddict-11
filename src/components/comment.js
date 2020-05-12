@@ -1,18 +1,30 @@
 import {EMOTIONS} from "../utils/constants.js";
 import AbstractComponent from "./abstract-component.js";
 
+
+const parseFormData = (formData) => {
+  return {
+    id: String(new Date() + Math.random()),
+    comment: `ff`,
+    date: Date.now(),
+    emotion: formData.get(`comment-emoji`)
+  };
+};
+
 export default class BlockComments extends AbstractComponent {
   constructor(comments) {
     super();
     this._comments = comments;
     this._element = null;
     this._currentEmoji = null;
+    this._commentDeleteClickHandler = null;
+    this.getData = this.getData.bind(this);
   }
 
   _createCommentsMarkup(comment) {
-    return comment.map(({author, text, date, emoji, time}) => {
+    return comment.map(({id, author, text, date, emoji, time}) => {
       return (
-        `<li class="film-details__comment">
+        `<li data-id="${id}"class="film-details__comment">
         <span class="film-details__comment-emoji">
             <img src="./images/emoji/${emoji}.png" width="55" height="55" alt="emoji-${emoji}">
         </span>
@@ -74,6 +86,30 @@ export default class BlockComments extends AbstractComponent {
 
   getTemplate() {
     return this._createBlockComments(this._comments);
+  }
+
+  setOnCommentDeleteClick(handler) {
+    this.getElement().querySelectorAll(`.film-details__comment-delete`)
+      .forEach((button) => button.addEventListener(`click`, (evt) => {
+        evt.preventDefault();
+        button.disabled = true;
+        button.textContent = `Deleting...`;
+        const commentId = button.closest(`.film-details__comment`).dataset.id;
+
+        handler(commentId, button);
+      }));
+
+    this._commentDeleteClickHandler = handler;
+  }
+
+  getData() {
+    const form = this.getElement().querySelector(`.film-details__inner`);
+    const formData = new FormData(form);
+
+    return {
+      comment: parseFormData(formData),
+      movie: this._movie
+    };
   }
 
   setonEmojisClick() {

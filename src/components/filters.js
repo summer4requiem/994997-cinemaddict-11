@@ -12,14 +12,14 @@ export default class Filters extends AbstractComponent {
     const isMainLink = name === mainLink;
 
     return (
-      `<a href="#${name}" id="${name}" class="main-navigation__item main-navigation__item ${isChecked ? `checked` : ``}">
+      `<a href="#${name}" id="${name}" class="main-navigation__item main-navigation__item ${isChecked ? `--active` : ``}">
       ${name}${isMainLink ? `` : `<span class="main-navigation__item-count">${count}</span>`}
        </a>`
     );
   }
 
   _createFilterTemplate(filters) {
-    const filtersMarkup = filters.map((it) => this._createFilterMarkup(it, it.checked)).join(`\n`);
+    const filtersMarkup = filters.map((it) => this._createFilterMarkup(it, it.checked[0])).join(`\n`);
 
     return (
       `<nav class="main-navigation">
@@ -34,7 +34,6 @@ export default class Filters extends AbstractComponent {
   getTemplate() {
     return this._createFilterTemplate(this._filters);
   }
-
 
   setFilterChangeHandler(handler) {
     let selectedA;

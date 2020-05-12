@@ -5,11 +5,12 @@ import {renderHtml} from "./utils/common.js";
 import {FILMS_AMOUNT} from "./utils/constants.js";
 import UserRankComponent from "./components/user-rank.js";
 import FilmsModel from "./models/films.js";
+import CommentsModel from "./models/comments.js";
 import FilterController from "./controllers/filters.js";
 
 const siteMainElement = document.querySelector(`.main`);
 const films = generateFilms(FILMS_AMOUNT);
-
+const commentsModel = new CommentsModel();
 const filmsModel = new FilmsModel();
 filmsModel.setFilms(films);
 
@@ -21,7 +22,7 @@ const filterController = new FilterController(siteMainElement, filmsModel);
 filterController.render();
 
 const cardSection = new CardSectionComponent();
-const pageControl = new PageController(cardSection, filmsModel);
+const pageControl = new PageController(cardSection, filmsModel, commentsModel);
 
 renderHtml(siteMainElement, cardSection);
 pageControl.render(films);

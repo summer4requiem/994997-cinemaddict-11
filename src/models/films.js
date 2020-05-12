@@ -28,7 +28,6 @@ export default class Films {
     this._callHandlers(this._filterChangeHandlers);
   }
 
-
   updateFilm(id, film) {
     const index = this._films.findIndex((it) => it.id === id);
 
@@ -64,7 +63,6 @@ export default class Films {
     this._films = [].concat(film, this._films);
     this._callHandlers(this._dataChangeHandlers);
   }
-
 
   setFilterChangeHandler(handler) {
     this._filterChangeHandlers.push(handler);
