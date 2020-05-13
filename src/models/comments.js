@@ -13,6 +13,11 @@ export default class Comments {
     });
   }
 
+  addFilm(film) {
+    this._films = [].concat(film, this._films);
+    this._callHandlers(this._dataChangeHandlers);
+  }
+
   getComments(film) {
     return this._comments.filter((comment) => comment.filmId === film.id);
   }

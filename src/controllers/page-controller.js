@@ -3,10 +3,21 @@ import NoFilms from "../components/no-films.js";
 import SortComponent from "../components/sort.js";
 import FilmsContainer from "../components/films-container.js";
 import FilmExtraComponent from "../components/film-extra.js";
-import {renderHtml, RenderPosition, remove} from "../utils/common.js";
-import {SortType} from "../components/sort.js";
-import {FILM_COUNT, FILM_AMOUNT_BY_BUTTON} from "../utils/constants.js";
-import FilmController, {Mode as FilmControllerMode} from "./film-controller.js";
+import {
+  renderHtml,
+  RenderPosition,
+  remove
+} from "../utils/common.js";
+import {
+  SortType
+} from "../components/sort.js";
+import {
+  FILM_COUNT,
+  FILM_AMOUNT_BY_BUTTON
+} from "../utils/constants.js";
+import FilmController, {
+  Mode as FilmControllerMode
+} from "./film-controller.js";
 
 
 const renderFilms = (filmsListElement, films, onDataChange, onViewChange) => {
@@ -152,9 +163,14 @@ export default class PageController {
     this._creatingFilm = new FilmController(filmsListElement, this._onDataChange, this._onViewChange);
     this._creatingFilm.renderHtml(null, FilmControllerMode.ADDING);
   }
-  _onDataChange(filmController, oldData, newData) {
-    const isSuccess = this._filmsModel.updateFilm(oldData.id, newData);
 
+  // _onCommentsDataChange()
+
+  _onDataChange(filmController, oldData, newData) {
+    if (newData === null) {
+      oldData.remove();
+    }
+    const isSuccess = this._filmsModel.updateFilm(oldData.id, newData);
     if (isSuccess) {
       filmController.render(newData, FilmControllerMode.DEFAULT);
     }

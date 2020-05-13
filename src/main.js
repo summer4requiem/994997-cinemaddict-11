@@ -6,7 +6,7 @@ import {FILMS_AMOUNT} from "./utils/constants.js";
 import UserRankComponent from "./components/user-rank.js";
 import FilmsModel from "./models/films.js";
 import CommentsModel from "./models/comments.js";
-import FilterController from "./controllers/filters.js";
+import FilterController from "./controllers/filters-controllers.js";
 
 const siteMainElement = document.querySelector(`.main`);
 const films = generateFilms(FILMS_AMOUNT);

@@ -46,6 +46,10 @@ const replace = (newComponent, oldComponent) => {
   }
 };
 
+const formatCommentDate = (date) => {
+  return moment(date).format(`DD/MM/YYYY hh:mm`);
+};
+
 
 const formatTime = (date) => {
   return moment(date).format(`h[h] m[m]`);
@@ -65,6 +69,7 @@ export {
   remove,
   RenderPosition,
   replace,
+  formatCommentDate,
   formatTime,
   formatDate,
 };
